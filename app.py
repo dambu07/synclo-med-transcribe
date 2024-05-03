@@ -383,6 +383,18 @@ def main():
         st.session_state.notes = notes
         st.markdown(f"**{notes}**", unsafe_allow_html=True)
 
+            
+     def generate_notes(notes_input, template):
+    response = openai.Completion.create(
+        engine="text-davinci-003",  # Replace with your desired engine
+        prompt=template.format(notes_input),
+        max_tokens=150,  # Adjust as needed
+        n=1,
+        stop=None,
+        temperature=0.7,
+    )
+    return response.choices[0].text.strip()       
+
     # Generate Suggestions
     st.header("Start of the Generate Suggestions")
     suggestions_input = st.text_area("Input", value=st.session_state.notes if 'notes' in st.session_state else '', key='suggestions_input')
