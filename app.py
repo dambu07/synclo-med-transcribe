@@ -339,7 +339,7 @@ Signature of Surgeon:
 }
 
 def main():
-    st.title("Synclo-Voice: An Auto Note-Taking Tool for Doctors and Nurses")
+    st.title("Synclo-Voice: An Auto Note-Taking Tool for Doctors, Nurses and Patients.")
 
     persona = st.selectbox("Select your persona:", ["General", "Pediatrician", "ED nurse", "Surgeon"])
 
