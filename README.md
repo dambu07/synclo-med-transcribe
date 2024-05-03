@@ -1,5 +1,5 @@
-# Synclo-Voice
-### Synclo-Voice: An AI-Powered Medical Transcription and Note-Taking Tool
+# Synclo-MediVoice
+### Synclo-MediVoice: An AI-Powered Medical Transcription and Note-Taking Tool
 Synclo-Voice is a state-of-the-art, AI-powered tool designed to assist healthcare professionals in their day-to-day tasks. It leverages the power of OpenAI's GPT-4 and LangChain to transcribe patient-doctor conversations, generate clinical notes, provide medical suggestions, and facilitate interactive dialogue.
 
 #### Key Features
@@ -9,10 +9,10 @@ Medical Suggestions: Provides medical suggestions based on the context of the co
 Interactive Dialogue: Facilitates continuous conversation with the AI, which can answer questions and provide information based on the conversation history and generated notes.
 
 #### Usage
-Synclo-Voice is designed to be user-friendly and intuitive. It can be used as a standalone application or integrated into existing healthcare systems to enhance efficiency and accuracy in medical documentation.
+Synclo-MediVoice is designed to be user-friendly and intuitive. It can be used as a standalone application or integrated into existing healthcare systems to enhance efficiency and accuracy in medical documentation.
 
 #### Note
-While Synclo-Voice is a powerful tool, it is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
+While Synclo-MediVoice is a powerful tool, it is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
 
 ### Prototype 
-https://Synclo-Voice.streamlit.app/
+https://medivoice.streamlit.app/
