@@ -389,41 +389,44 @@ def main():
             st.write(transcribed_text)
             st.button("Transcription Complete", disabled=True)
 
-    # Generate Notes
-def generate_notes(notes_input, template):       
-    st.header("Start of the Generate Notes")
-    notes_input = st.text_area("Input", value=st.session_state.transcribed_text if 'transcribed_text' in st.session_state else '', key='notes_input')
+    def generate_notes(transcribed_text):
+
+        response = openai.Completion.create(  # Changed to Completion.create
+            model="gpt-4",
+            prompt=template.format(transcribed_text),  # Removed messages, used prompt directly
+            max_tokens=150,  # Adjust as needed
+            n=1,
+            stop=None,
+            temperature=0.7,
+        )
+        return response.choices[0].text.strip()
+
+
+    def main():
+        # Generate Notes
+        st.header("Start of the Generate Notes")
+        notes_input = st.text_area("Input", value=st.session_state.transcribed_text if 'transcribed_text' in st.session_state else '', key='notes_input')
         if st.button("Generate Notes"):
-           notes = generate_notes(notes_input, template)
-           st.session_state.notes = notes
-           st.markdown(f"**{notes}**", unsafe_allow_html=True)
+            notes = generate_notes(notes_input)  # Removed template argument as it's now in the function
+            st.session_state.notes = notes
+            st.markdown(f"**{notes}**", unsafe_allow_html=True)
 
-    response = openai.Completion.create(
-        engine="text-davinci-003",  # Replace with your desired engine
-        prompt=template.format(notes_input),
-        max_tokens=150,  # Adjust as needed
-        n=1,
-        stop=None,
-        temperature=0.7,
-    )
-    return response.choices[0].text.strip()       
+# Generate Suggestions
+        st.header("Start of the Generate Suggestions")
+        suggestions_input = st.text_area("Input", value=st.session_state.notes if 'notes' in st.session_state else '', key='suggestions_input')
+        if  st.button("Generate Suggestions"):
+            suggestions = generate_suggestions(suggestions_input)
+            st.write(suggestions)
 
-    # Generate Suggestions
-    st.header("Start of the Generate Suggestions")
-    suggestions_input = st.text_area("Input", value=st.session_state.notes if 'notes' in st.session_state else '', key='suggestions_input')
-    if st.button("Generate Suggestions"):
-        suggestions = generate_suggestions(suggestions_input)
-        st.write(suggestions)
+        st.title("MediVoice bot")
 
-    st.title("Synclo-Voice Chatbot")
+        # User input
+        user_input = st.text_input("Enter your message:")
 
-    # User input
-    user_input = st.text_input("Enter your message:")
-
-    # Send button
-    if st.button("Send"):
-        response = chat_with_gpt(user_input, st.session_state.notes, conversation_history)
-        st.write(f"AI: {response}")
-
+        # Send button
+        if  st.button("Send"):
+            response = chat_with_gpt(user_input, st.session_state.notes, conversation_history)
+            st.write(f"AI: {response}")
+    
 if __name__ == "__main__":
     main()
