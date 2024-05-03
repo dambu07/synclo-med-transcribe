@@ -22,6 +22,17 @@ from langchain.prompts import PromptTemplate
 
 openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
 
+# ----------------------Hide Streamlit----------------------------
+hide_st_style = """
+            <style>
+            MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
+# --------------------------------------------------------------------
+
 def main():
     print(f" ")
 
