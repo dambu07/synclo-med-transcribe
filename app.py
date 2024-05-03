@@ -22,6 +22,18 @@ from langchain.prompts import PromptTemplate
 
 openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
 
+st.set_page_config(
+    page_title="Synclo",
+    page_icon="🧊",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://www.synclo.io/contact',
+        'Report a bug': "https://www.synclo.io/bug",
+        'About': "# This is a header. This is an *extremely* cool app!"
+    }
+)
+
 # ----------------------Hide Streamlit----------------------------
 hide_st_style = """
             <style>
@@ -339,6 +351,8 @@ Signature of Surgeon:
 }
 
 def main():
+    st.image("/synclo-logo.png", width=200)  
+            
     st.title("Synclo-MediVoice: An Auto Note-Taking Tool for Doctors, Nurses and Patients.")
 
     persona = st.selectbox("Select your persona:", ["General", "Pediatrician", "ED nurse", "Surgeon"])
@@ -376,15 +390,14 @@ def main():
             st.button("Transcription Complete", disabled=True)
 
     # Generate Notes
+def generate_notes(notes_input, template):       
     st.header("Start of the Generate Notes")
     notes_input = st.text_area("Input", value=st.session_state.transcribed_text if 'transcribed_text' in st.session_state else '', key='notes_input')
-    if st.button("Generate Notes"):
-        notes = generate_notes(notes_input, template)
-        st.session_state.notes = notes
-        st.markdown(f"**{notes}**", unsafe_allow_html=True)
+        if st.button("Generate Notes"):
+           notes = generate_notes(notes_input, template)
+           st.session_state.notes = notes
+           st.markdown(f"**{notes}**", unsafe_allow_html=True)
 
-            
-     def generate_notes(notes_input, template):
     response = openai.Completion.create(
         engine="text-davinci-003",  # Replace with your desired engine
         prompt=template.format(notes_input),
