@@ -24,13 +24,6 @@ from audio_handler import transcribe_audio
 
 openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
 
-st.set_page_config(
-    page_title="Synclo-MediVoice",
-    page_icon="🧊",
-    layout="wide",
-    theme="light"
-)
-
 # ----------------------Hide Streamlit----------------------------
 hide_st_style = """
             <style>
