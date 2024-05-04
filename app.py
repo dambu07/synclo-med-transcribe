@@ -22,18 +22,6 @@ from langchain.prompts import PromptTemplate
 
 openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
 
-st.set_page_config(
-    page_title="Synclo",
-    page_icon="🧊",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    menu_items={
-        'Get Help': 'https://www.synclo.io/contact',
-        'Report a bug': "https://www.synclo.io/bug",
-        'About': "# This is a header. This is an *extremely* cool app!"
-    }
-)
-
 # ----------------------Hide Streamlit----------------------------
 hide_st_style = """
             <style>
