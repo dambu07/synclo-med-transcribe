@@ -20,7 +20,7 @@ from langchain.memory import ChatMessageHistory, ConversationBufferMemory
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 from PIL import Image
-from audio_handler import transcribe_audio
+
 
 openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
 
